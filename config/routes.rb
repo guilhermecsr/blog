@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   #
   # localhost:3000
-  resources :articles
+  resources :posts
 
   root 'home#index'
 end
