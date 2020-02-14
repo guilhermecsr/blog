@@ -1,7 +1,11 @@
 class PostsController < ApplicationController
 
-  def new
+  def index
+    @posts = Post.all
+  end
 
+  def new
+    @post = Post.new
   end
 
   # posts#create - posts_path - /posts
@@ -14,7 +18,7 @@ class PostsController < ApplicationController
     #   mandar uma msg pro use5r dizenmdo que salvou
       redirect_to post_path(@post)
     else
-      redirect_to new_post_path
+      render :new
     #   mandar uma msg pro user dixzendi q n salvou
     end
   end
@@ -23,7 +27,20 @@ class PostsController < ApplicationController
   def show
     @post = Post.find(params[:id])
   end
-  #
+
+  def edit
+    @post = Post.find(params[:id])
+  end
+
+  def update
+    @post = Post.find(params[:id])
+
+    if @post.update(posts_params)
+      redirect_to @post
+    else
+      render 'edit'
+    end
+  end
 
   private
 
