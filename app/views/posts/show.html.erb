@@ -1,12 +1,47 @@
-<p>
+<div class="row">
+  <div class="col-sm-6">
+
+<div style="border-style: outset;">
+  <p>
   <strong>Title:</strong>
   <%= @post.title %>
 </p>
+</div>
 
-<p>
-  <strong>Text:</strong>
-  <%= @post.text %>
-</p>
+<div style="border-style: outset;">
+  <p>
+    <strong>Text:</strong>
+    <%= @post.text %>
+  </p>
+</div>
+
+<h2>Comments</h2>
+<% @post.comments.each do |comment| %>
+  <p>
+    <strong>Commenter:</strong>
+    <%= comment.commenter %>
+  </p>
+
+  <p>
+    <strong>Comment:</strong>
+    <%= comment.body %>
+  </p>
+<% end %>
+
+<h2>Add a comment:</h2>
+<%= form_with(model: [ @post, @post.comments.build ], local: true) do |form| %>
+  <p>
+    <%= form.label :commenter %><br>
+    <%= form.text_field :commenter %>
+  </p>
+  <p>
+    <%= form.label :body %><br>
+    <%= form.text_area :body %>
+  </p>
+  <p>
+    <%= form.submit %>
+  </p>
+<% end %>
 
 <p>
   <%= link_to 'Edit', edit_post_path%> <%= link_to 'All Posts', posts_path%>
@@ -17,4 +52,5 @@
   <%= link_to 'Home', root_path%>
 
 </p>
-
+  </div>
+</div>
